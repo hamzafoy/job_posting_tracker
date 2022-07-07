@@ -3,13 +3,15 @@ import express from 'express'; //importing Express.js
 import path from 'path'; //importing path module to retrieve paths across various OS
 import { fileURLToPath } from 'url'; //Alternative to CommonJS's __dirname usage
 import { dirname } from 'path'; //Alternative to CommonJS's __dirname usage
+import ejs from 'ejs'; //importing ejs templating engine
 const __filename = fileURLToPath(import.meta.url); //Alternative to CommonJS's __dirname usage
-const __dirname = dirname(__filename); //Alternative to CommonJS's __dirname usageC
+const __dirname = dirname(__filename); //Alternative to CommonJS's __dirname usage
 
 
 // :::: Starting new Express application
 const application = express();
 application.use(express.static('public')); //instructs Express to serve assets from a 'public' directory
+application.set('view engine', 'ejs'); //instructs Express to render .ejs files with EJS package
 
 
 // :::: Creating Routes
