@@ -16,15 +16,15 @@ application.set('view engine', 'ejs'); //instructs Express to render .ejs files 
 
 // :::: Creating Routes
 application.get('/', (req, res) => { //root route
-    res.sendFile(path.resolve(__dirname, 'index.html'));
+    res.render('index');
 })
 
 application.get('/about', (req, res) => { //about route
-    res.sendFile(path.resolve(__dirname, 'about.html'));
+    res.render('about');
 })
 
 application.get('/contact', (req, res) => { //contact route
-    res.sendFile(path.resolve(__dirname, 'contact.html'));
+    res.render('contact');
 })
 
 application.listen(3000, () => {
