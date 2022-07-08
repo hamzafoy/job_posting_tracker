@@ -6,6 +6,7 @@ import { dirname } from 'path'; //Alternative to CommonJS's __dirname usage
 import ejs from 'ejs'; //importing ejs templating engine
 import bodyParser from 'body-parser'; //importing dependency that parses POST data
 import mongoose from 'mongoose'; //importing Mongoose ORM to connect to MongoDB database
+import JobPost from './models/JobPosting.js'; //importing the Database Model for use in POST requests
 const __filename = fileURLToPath(import.meta.url); //Alternative to CommonJS's __dirname usage
 const __dirname = dirname(__filename); //Alternative to CommonJS's __dirname usage
 
@@ -37,7 +38,9 @@ application.get('/contact', (req, res) => { //contact route
 
 application.post('/submissions/store', (req, res) => {
     console.log(req.body);
-    res.redirect('/');
+    JobPost.create(req.body, (error, jobpost) => {
+        res.redirect('/');
+    })
 })
 
 application.listen(3000, () => {
