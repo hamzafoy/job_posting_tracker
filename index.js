@@ -4,6 +4,8 @@ import path from 'path'; //importing path module to retrieve paths across variou
 import { fileURLToPath } from 'url'; //Alternative to CommonJS's __dirname usage
 import { dirname } from 'path'; //Alternative to CommonJS's __dirname usage
 import ejs from 'ejs'; //importing ejs templating engine
+import bodyParser from 'body-parser'; //importing dependency that parses POST data
+import mongoose from 'mongoose'; //importing Mongoose ORM to connect to MongoDB database
 const __filename = fileURLToPath(import.meta.url); //Alternative to CommonJS's __dirname usage
 const __dirname = dirname(__filename); //Alternative to CommonJS's __dirname usage
 
@@ -12,6 +14,12 @@ const __dirname = dirname(__filename); //Alternative to CommonJS's __dirname usa
 const application = express();
 application.use(express.static('public')); //instructs Express to serve assets from a 'public' directory
 application.set('view engine', 'ejs'); //instructs Express to render .ejs files with EJS package
+application.use(bodyParser.json());
+application.use(bodyParser.urlencoded({extended: true}));
+
+
+// :::: Connecting to MongoDB NoSQL database from Node
+mongoose.connect('mongodb://localhost/my_database', {useNewURLParser: true});
 
 
 // :::: Creating Routes
@@ -25,6 +33,11 @@ application.get('/about', (req, res) => { //about route
 
 application.get('/contact', (req, res) => { //contact route
     res.render('contact');
+})
+
+application.post('/submissions/store', (req, res) => {
+    console.log(req.body);
+    res.redirect('/');
 })
 
 application.listen(3000, () => {
