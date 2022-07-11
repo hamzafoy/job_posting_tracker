@@ -20,12 +20,15 @@ application.use(bodyParser.urlencoded({extended: true}));
 
 
 // :::: Connecting to MongoDB NoSQL database from Node
-mongoose.connect('mongodb://localhost/my_database', {useNewURLParser: true});
+mongoose.connect('mongodb://localhost/hamza_job_hunt', {useNewURLParser: true});
 
 
 // :::: Creating Routes
-application.get('/', (req, res) => { //root route
-    res.render('index');
+application.get('/', async (req, res) => { //root route
+    const jobposts = await JobPost.find({});
+    res.render('index', {
+        jobposts
+    });
 })
 
 application.get('/about', (req, res) => { //about route
@@ -36,11 +39,10 @@ application.get('/contact', (req, res) => { //contact route
     res.render('contact');
 })
 
-application.post('/submissions/store', (req, res) => {
+application.post('/submissions/store', async (req, res) => {
     console.log(req.body);
-    JobPost.create(req.body, (error, jobpost) => {
-        res.redirect('/');
-    })
+    await JobPost.create(req.body);
+    res.redirect('/');
 })
 
 application.listen(3000, () => {
