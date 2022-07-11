@@ -13,6 +13,7 @@
                 <th scope="col">Job Title</th>
                 <th scope="col">Company</th>
                 <th scope="col">Status</th>
+                <th scope="col">Cover Letter?</th>
             </tr>
             </thead>
             <tbody>
@@ -20,6 +21,7 @@
                 <td>Communication Specialist I</td>
                 <td>MetroSafe</td>
                 <td>Accepted</td>
+                <td>Yes</td>
             </tr>
             <% for(var i = 0; i < jobposts.length; i++) { %>
                 <tr>
@@ -31,6 +33,9 @@
                     </td>
                     <td>
                         <%= (jobposts[i].status[0].toUpperCase() + jobposts[i].status.substring(1).toLowerCase() )%>
+                    </td>
+                    <td>
+                        <%= (jobposts[i].coverletter ? "Yes" : "No") %>
                     </td>
                 </tr>
             <%}%>

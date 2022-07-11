@@ -7,7 +7,8 @@ const Schema = mongoose.Schema;
 const JobPostingSchema = new Schema({
     title: String,
     company: String,
-    status: String
+    status: String,
+    coverletter: Boolean
 });
 
 
