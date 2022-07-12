@@ -1,6 +1,5 @@
 // :::: Modules Importing
 import express from 'express'; //importing Express.js
-import path from 'path'; //importing path module to retrieve paths across various OS
 import { fileURLToPath } from 'url'; //Alternative to CommonJS's __dirname usage
 import { dirname } from 'path'; //Alternative to CommonJS's __dirname usage
 import ejs from 'ejs'; //importing ejs templating engine
@@ -23,6 +22,24 @@ application.use(bodyParser.urlencoded({extended: true}));
 mongoose.connect('mongodb://localhost/hamza_job_hunt', {useNewURLParser: true});
 
 
+// :::: Middleware
+const validateJobPost = (req, res, next) => {
+    if (req.body.title === '' || req.body.company === '') {
+        application.locals.isEmpty = true;
+        setTimeout(triggerIsEmpty, 1000);
+        return res.redirect('/contact');
+    }
+    next();
+};
+const triggerIsEmpty = () => {
+    application.locals.isEmpty = false
+};
+
+
+// :::: Local Application Variables
+application.locals.isEmpty = false;
+
+
 // :::: Creating Routes
 application.get('/', async (req, res) => { //root route
     const jobposts = await JobPost.find({});
@@ -35,12 +52,15 @@ application.get('/about', (req, res) => { //about route
     res.render('about');
 })
 
-application.get('/contact', (req, res) => { //contact route
-    res.render('contact');
+application.get('/contact', async (req, res) => { //contact route
+    const isEmpty = application.locals.isEmpty;
+    console.log(isEmpty);
+    res.render('contact', {
+        isEmpty
+    });
 })
 
-application.post('/submissions/store', async (req, res) => {
-    console.log(req.body);
+application.post('/submissions/store', validateJobPost, async (req, res) => {
     await JobPost.create(req.body);
     res.redirect('/');
 })
