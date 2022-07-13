@@ -9,6 +9,8 @@ import JobPost from './models/JobPosting.js'; //importing the Database Model for
 const __filename = fileURLToPath(import.meta.url); //Alternative to CommonJS's __dirname usage
 const __dirname = dirname(__filename); //Alternative to CommonJS's __dirname usage
 import homePageController from './controllers/homePage.js';
+import aboutPageController from './controllers/aboutPage.js';
+import listingFormController from './controllers/listingForm.js';
 
 
 // :::: Starting new Express application
@@ -28,7 +30,7 @@ const validateJobPost = (req, res, next) => {
     if (req.body.title === '' || req.body.company === '') {
         application.locals.isEmpty = true;
         setTimeout(triggerIsEmpty, 1000);
-        return res.redirect('/contact');
+        return res.redirect('/listing');
     }
     next();
 };
@@ -44,16 +46,9 @@ application.locals.isEmpty = false;
 // :::: Creating Routes
 application.get('/', homePageController)
 
-application.get('/about', (req, res) => { //about route
-    res.render('about');
-})
+application.get('/about', aboutPageController)
 
-application.get('/contact', async (req, res) => { //contact route
-    const isEmpty = application.locals.isEmpty;
-    res.render('contact', {
-        isEmpty
-    });
-})
+application.get('/listing', listingFormController)
 
 application.post('/submissions/store', validateJobPost, async (req, res) => {
     await JobPost.create(req.body);
