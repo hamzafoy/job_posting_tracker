@@ -8,6 +8,7 @@ import mongoose from 'mongoose'; //importing Mongoose ORM to connect to MongoDB 
 import JobPost from './models/JobPosting.js'; //importing the Database Model for use in POST requests
 const __filename = fileURLToPath(import.meta.url); //Alternative to CommonJS's __dirname usage
 const __dirname = dirname(__filename); //Alternative to CommonJS's __dirname usage
+import homePageController from './controllers/homePage.js';
 
 
 // :::: Starting new Express application
@@ -41,12 +42,7 @@ application.locals.isEmpty = false;
 
 
 // :::: Creating Routes
-application.get('/', async (req, res) => { //root route
-    const jobposts = await JobPost.find({});
-    res.render('index', {
-        jobposts
-    });
-})
+application.get('/', homePageController)
 
 application.get('/about', (req, res) => { //about route
     res.render('about');
@@ -54,7 +50,6 @@ application.get('/about', (req, res) => { //about route
 
 application.get('/contact', async (req, res) => { //contact route
     const isEmpty = application.locals.isEmpty;
-    console.log(isEmpty);
     res.render('contact', {
         isEmpty
     });
