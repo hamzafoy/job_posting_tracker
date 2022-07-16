@@ -7,7 +7,16 @@
     <%- include('layouts/navbar'); -%>
 
     <div class="container">
-        <table class="table vertical-spacer">
+
+        <div id="chart-container">
+
+            <div id="chart-jobPostingStatus">
+
+            </div>
+
+        </div>
+
+        <table class="table">
             <thead>
             <tr>
                 <th scope="col">Job Title</th>
@@ -35,14 +44,6 @@
             <%}%>
             </tbody>
         </table>
-
-        <div id="chart-container">
-
-            <div id="chart-jobPostingStatus">
-
-            </div>
-
-        </div>
         
         <script>
             var data = [{
