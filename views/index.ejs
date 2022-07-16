@@ -17,12 +17,6 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>Communication Specialist I</td>
-                <td>MetroSafe</td>
-                <td>Accepted</td>
-                <td>Yes</td>
-            </tr>
             <% for(var i = 0; i < jobposts.length; i++) { %>
                 <tr>
                     <td>
@@ -42,26 +36,29 @@
             </tbody>
         </table>
 
-        <div id="gd">
+        <div id="chart-container">
+
+            <div id="chart-jobPostingStatus">
+
+            </div>
 
         </div>
+        
         <script>
             var data = [{
-            values: [19, 26, 55],
-            labels: ['Residential', 'Non-Residential', 'Utility'],
+            values: [<%= ((pendingPosts/jobPostCount) * 100) %>, <%= ((rejectedPosts/jobPostCount) * 100) %>],
+            labels: ['Pending', 'Rejected'],
             type: 'pie'
             }];
 
             var layout = {
-            height: 400,
+            height: 500,
             width: 500
             };
 
-            Plotly.newPlot('gd', data, layout);
+            Plotly.newPlot('chart-jobPostingStatus', data, layout);
           </script>
     </div>
-
-    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script> -->
     
 </body>
 </html>
