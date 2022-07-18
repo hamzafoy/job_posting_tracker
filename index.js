@@ -11,7 +11,8 @@ import homePageController from './controllers/homePage.js';
 import aboutPageController from './controllers/aboutPage.js';
 import listingFormController from './controllers/listingForm.js';
 import listingFormStoreController from './controllers/listFormStore.js';
-import registerFormController from './controllers/registerPage.js';
+import registerFormController from './controllers/registerForm.js';
+import registerFormStoreController from './controllers/registerFormStore.js';
 
 
 // :::: Importing Middleware
@@ -40,6 +41,8 @@ application.get('/', homePageController)
 application.get('/about', aboutPageController)
 
 application.get('/auth/register', registerFormController);
+
+application.post('/users/register', registerFormStoreController);
 
 application.get('/listing', listingFormController)
 
