@@ -41,6 +41,11 @@ mongoose.connect('mongodb://localhost/hamza_job_hunt', {useNewURLParser: true});
 
 // :::: Local Application Variables
 application.locals.isEmpty = false;
+global.loggedIn = null; // Setting an application-wide variable accessible by EJS
+application.use("*", (req, res, next) => {
+    loggedIn = req.session.userId;
+    next();
+});
 
 
 // :::: Creating Routes
