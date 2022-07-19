@@ -7,6 +7,7 @@ const homePage = async(req, res) => {
     pendingPosts = pendingPosts.length;
     let rejectedPosts = await JobPost.find({ status: 'rejected'});
     rejectedPosts = rejectedPosts.length;
+    console.log(req.session);
     res.render('index', {
         jobposts, jobPostCount, pendingPosts, rejectedPosts
     });

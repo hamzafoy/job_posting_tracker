@@ -18,7 +18,10 @@ import loginUserController from './controllers/loginUser.js';
 
 
 // :::: Importing Middleware
+import authenticateUser from './middleware/authMiddleware.js';
+import redirectIfAuthenticated from './middleware/redirectIfAuthMiddleware.js';
 import validateJobPost from './middleware/validationMiddleware.js';
+import expressSession from 'express-session';
 
 
 // :::: Starting new Express application
@@ -27,6 +30,9 @@ application.use(express.static('public')); //instructs Express to serve assets f
 application.set('view engine', 'ejs'); //instructs Express to render .ejs files with EJS package
 application.use(bodyParser.json());
 application.use(bodyParser.urlencoded({extended: true}));
+application.use(expressSession({
+    secret: 'hamza is my preferred name'
+}));
 
 
 // :::: Connecting to MongoDB NoSQL database from Node
@@ -42,15 +48,15 @@ application.get('/', homePageController);
 
 application.get('/about', aboutPageController);
 
-application.get('/auth/login', loginController);
+application.get('/auth/login', redirectIfAuthenticated, loginController);
 
-application.post('/users/login', loginUserController);
+application.post('/users/login', redirectIfAuthenticated, loginUserController);
 
-application.get('/auth/register', registerFormController);
+application.get('/auth/register', redirectIfAuthenticated, registerFormController);
 
-application.post('/users/register', registerFormStoreController);
+application.post('/users/register', redirectIfAuthenticated, registerFormStoreController);
 
-application.get('/listing', listingFormController);
+application.get('/listing', authenticateUser, listingFormController);
 
 application.post('/submissions/store', validateJobPost, listingFormStoreController);
 
