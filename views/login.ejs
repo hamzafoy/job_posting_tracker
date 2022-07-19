@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('layouts/header'); -%>
+
+<body>
+
+    <%- include('layouts/navbar'); -%>
+    
+    <div class="container vertical-spacer">
+        <div class="form-header">
+            <h2 class="display-3">Login to your Account</h2>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <form action="/users/login" method="POST">
+                    <div class="control-group">
+
+                        <div class="form-group floating-label-form-group controls">
+                            <label>Username</label>
+                            <input type="text" class="form-control" placeholder="Enter username here. . ." id="username" name="username" >
+                        </div>
+
+                        <div class="form-group floating-label-form-group controls">
+                            <label>Password</label>
+                            <input type="password" class="form-control" placeholder="Create a password here. . ." id="password" name="password" >
+                        </div>
+
+                        <br/>
+
+                        <br/>
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary" id="registerAccountButton">Login</button>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>

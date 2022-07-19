@@ -13,6 +13,8 @@ import listingFormController from './controllers/listingForm.js';
 import listingFormStoreController from './controllers/listFormStore.js';
 import registerFormController from './controllers/registerForm.js';
 import registerFormStoreController from './controllers/registerFormStore.js';
+import loginController from './controllers/login.js';
+import loginUserController from './controllers/loginUser.js';
 
 
 // :::: Importing Middleware
@@ -36,17 +38,21 @@ application.locals.isEmpty = false;
 
 
 // :::: Creating Routes
-application.get('/', homePageController)
+application.get('/', homePageController);
 
-application.get('/about', aboutPageController)
+application.get('/about', aboutPageController);
+
+application.get('/auth/login', loginController);
+
+application.post('/users/login', loginUserController);
 
 application.get('/auth/register', registerFormController);
 
 application.post('/users/register', registerFormStoreController);
 
-application.get('/listing', listingFormController)
+application.get('/listing', listingFormController);
 
-application.post('/submissions/store', validateJobPost, listingFormStoreController)
+application.post('/submissions/store', validateJobPost, listingFormStoreController);
 
 application.listen(3000, () => {
     console.log("We are tuned in to Localhost 3000");
