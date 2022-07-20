@@ -68,6 +68,8 @@ application.get('/listing', authenticateUser, listingFormController);
 
 application.post('/submissions/store', validateJobPost, listingFormStoreController);
 
+application.use((req, res) => res.render('404notfound'));
+
 application.listen(3000, () => {
     console.log("We are tuned in to Localhost 3000");
 })

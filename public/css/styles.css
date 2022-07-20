@@ -28,6 +28,18 @@
   align-items: center;
 }
 
+.container_pageNotFound {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 5vh 0 0;
+}
+
+#image_pageNotFound {
+  height: 475px;
+  width: 375px;
+}
+
 :root {
   --bs-blue: #0d6efd;
   --bs-indigo: #6610f2;
