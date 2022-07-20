@@ -26,22 +26,24 @@
             </tr>
             </thead>
             <tbody>
-            <% for(var i = 0; i < jobposts.length; i++) { %>
-                <tr>
-                    <td>
-                        <%= jobposts[i].title %>
-                    </td>
-                    <td>
-                        <%= jobposts[i].company %>
-                    </td>
-                    <td>
-                        <%= (jobposts[i].status[0].toUpperCase() + jobposts[i].status.substring(1).toLowerCase() )%>
-                    </td>
-                    <td>
-                        <%= (jobposts[i].coverletter ? "Yes" : "No") %>
-                    </td>
-                </tr>
-            <%}%>
+
+                <% for(var i = 0; i < jobposts.length; i++) { %>
+                    <tr>
+                        <td>
+                            <%= jobposts[i].title %>
+                        </td>
+                        <td>
+                            <%= jobposts[i].company %>
+                        </td>
+                        <td>
+                            <%= (jobposts[i].status[0].toUpperCase() + jobposts[i].status.substring(1).toLowerCase() )%>
+                        </td>
+                        <td>
+                            <%= (jobposts[i].coverletter ? "Yes" : "No") %>
+                        </td>
+                    </tr>
+                <%}%>
+
             </tbody>
         </table>
         

@@ -8,7 +8,12 @@ const JobPostingSchema = new Schema({
     title: String,
     company: String,
     status: String,
-    coverletter: Boolean
+    coverletter: Boolean,
+    userid: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
+    }
 });
 
 
