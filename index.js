@@ -15,6 +15,7 @@ import registerFormController from './controllers/registerForm.js';
 import registerFormStoreController from './controllers/registerFormStore.js';
 import loginController from './controllers/login.js';
 import loginUserController from './controllers/loginUser.js';
+import logoutController from './controllers/logout.js';
 
 
 // :::: Importing Middleware
@@ -56,6 +57,8 @@ application.get('/about', aboutPageController);
 application.get('/auth/login', redirectIfAuthenticated, loginController);
 
 application.post('/users/login', redirectIfAuthenticated, loginUserController);
+
+application.get('/auth/logout', logoutController);
 
 application.get('/auth/register', redirectIfAuthenticated, registerFormController);
 
