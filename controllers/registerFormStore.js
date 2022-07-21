@@ -6,9 +6,10 @@ const registerFormStore = async(req, res) => {
             const errorMessage = Object.keys(error.errors).map(key => error.errors[key].message);
             console.log(errorMessage);
             return res.redirect('/auth/register');
+        } else {
+            return res.redirect('/');
         }
     });
-    res.redirect('/');
 };
 
 export default registerFormStore;

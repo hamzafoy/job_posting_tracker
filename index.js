@@ -32,7 +32,9 @@ application.set('view engine', 'ejs'); //instructs Express to render .ejs files 
 application.use(bodyParser.json());
 application.use(bodyParser.urlencoded({extended: true}));
 application.use(expressSession({
-    secret: 'hamza is my preferred name'
+    secret: 'hamza is my preferred name',
+    resave: false,
+    saveUninitialized: false
 }));
 
 

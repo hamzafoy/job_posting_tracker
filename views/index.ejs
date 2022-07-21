@@ -51,12 +51,18 @@
             var data = [{
             values: [<%= ((pendingPosts/jobPostCount) * 100) %>, <%= ((rejectedPosts/jobPostCount) * 100) %>],
             labels: ['Pending', 'Rejected'],
-            type: 'pie'
+            type: 'pie',
+            domain: {column: 1}
+            }, {
+                values: [20, 30, 50],
+                labels: ['This', 'is', 'Test'],
+                type: 'pie'
             }];
 
             var layout = {
-            height: 500,
-            width: 500
+            height: 400,
+            width: 600,
+            grid: {rows: 1, columns: 2}
             };
 
             Plotly.newPlot('chart-jobPostingStatus', data, layout);
