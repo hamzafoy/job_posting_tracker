@@ -4,14 +4,18 @@ const homePage = async(req, res) => {
     if(req.session.userId) {
         const jobposts = await JobPost.find({userid: req.session.userId}).populate('userid');
         const jobPostCount = jobposts.length;
-        let pendingPosts = await JobPost.find({ status: 'pending' }).populate('userid');;
+        let pendingPosts = await JobPost.find({ status: 'pending' }).populate('userid');
         pendingPosts = pendingPosts.length;
-        let rejectedPosts = await JobPost.find({ status: 'rejected'}).populate('userid');;
+        let rejectedPosts = await JobPost.find({ status: 'rejected'}).populate('userid');
         rejectedPosts = rejectedPosts.length;
-        console.log(jobposts);
-        console.log(req.session);
+        let coverLetterAdded = await JobPost.find({ coverletter: true}).populate('userid');
+        coverLetterAdded = coverLetterAdded.length;
+        let noCoverLetterAdded = await JobPost.find({ coverletter: false }).populate('userid');
+        noCoverLetterAdded = noCoverLetterAdded.length;
+        //console.log(jobposts);
+        //console.log(req.session);
         res.render('index', {
-            jobposts, jobPostCount, pendingPosts, rejectedPosts
+            jobposts, jobPostCount, pendingPosts, rejectedPosts, coverLetterAdded, noCoverLetterAdded
         });  
     } else {
         res.render('index', {
@@ -37,7 +41,9 @@ const homePage = async(req, res) => {
             ],
             jobPostCount: 3,
             pendingPosts: 2,
-            rejectedPosts: 1
+            rejectedPosts: 1,
+            coverLetterAdded: 1,
+            noCoverLetterAdded: 2
         })
     }
     

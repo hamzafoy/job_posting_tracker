@@ -54,19 +54,25 @@
             labels: ['Pending', 'Rejected'],
             type: 'pie',
             hole: .3,
-            domain: {column: 1}
+            name: '',
+            domain: {column: 0},
+            textposition: "outside"
             }, 
             {
-            values: [50, 50],
-            labels: ['Yes', 'No'],
+            values: [<%= ((coverLetterAdded/jobPostCount) * 100) %>, <%= ((noCoverLetterAdded/jobPostCount) * 100) %>],
+            labels: ['With Cover Letter', 'Without Cover Letter'],
             type: 'pie',
-            hole: .3
+            hole: .3,
+            name: '',
+            domain: {column: 1},
+            textposition: "outside"
             }
             ];
 
             var layout = {
-            height: 500,
-            width: 650,
+            title: 'Status of Job Apps & Cover Letter Shares',
+            height: 400,
+            width: 750,
             grid: {rows: 1, columns: 2}
             };
 
