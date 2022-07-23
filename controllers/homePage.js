@@ -21,8 +21,8 @@ const homePage = async(req, res) => {
         res.render('index', {
             jobposts: [
                 {
-                    title: "Junior Developer",
-                    company: "Hamzaology",
+                    title: "This is dummy data",
+                    company: "To showcase the dashboard",
                     status: "pending",
                     coverletter: true
                 },
