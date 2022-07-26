@@ -16,6 +16,10 @@ const loginUser = async(req, res) => {
                 }
             })
         } else {
+            const error = [
+                "Please provide an username and/or password"
+            ];
+            req.session.validationErrors = error;
             res.redirect('/auth/login');
         }
     })
