@@ -11,12 +11,12 @@ import bcrypt from 'bcrypt';
 const UserSchema = new Schema({
     username: {
         type: String,
-        required: true,
+        required: [true, 'Please provide an username'],
         unique: true
     },
     password: {
         type: String,
-        required: true
+        required: [true, 'Please provide a password']
     }
 });
 
