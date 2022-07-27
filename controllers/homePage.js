@@ -21,8 +21,8 @@ const homePage = async(req, res) => {
         res.render('index', {
             jobposts: [
                 {
-                    title: "This is dummy data",
-                    company: "To showcase the dashboard",
+                    title: "Dummy Data",
+                    company: "To Showcase User Dashboard",
                     status: "pending",
                     coverletter: true
                 },
