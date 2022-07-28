@@ -11,6 +11,7 @@ import homePageController from './controllers/homePage.js';
 import aboutPageController from './controllers/aboutPage.js';
 import listingFormController from './controllers/listingForm.js';
 import listingFormStoreController from './controllers/listFormStore.js';
+import listingDeletionController from './controllers/listingDeletion.js';
 import registerFormController from './controllers/registerForm.js';
 import registerFormStoreController from './controllers/registerFormStore.js';
 import loginController from './controllers/login.js';
@@ -71,15 +72,7 @@ application.get('/listing', authenticateUser, listingFormController);
 
 application.post('/submissions/store', validateJobPost, listingFormStoreController);
 
-application.get('/submissions/delete/:id', async(req, res) => {
-    let jobPost = await JobPost.findById(req.params.id);
-    jobPost = jobPost._id.toString();
-    console.log(jobPost);
-    JobPost.findByIdAndDelete(jobPost, (error, jobpost) => {
-        console.log(jobpost);
-    })
-    res.redirect('/');
-})
+application.get('/submissions/delete/:id', listingDeletionController);
 
 application.use((req, res) => res.render('404notfound'));
 
