@@ -23,6 +23,7 @@ import authenticateUser from './middleware/authMiddleware.js';
 import redirectIfAuthenticated from './middleware/redirectIfAuthMiddleware.js';
 import validateJobPost from './middleware/validationMiddleware.js';
 import expressSession from 'express-session';
+import JobPost from './models/JobPosting.js';
 
 
 // :::: Starting new Express application
@@ -70,8 +71,13 @@ application.get('/listing', authenticateUser, listingFormController);
 
 application.post('/submissions/store', validateJobPost, listingFormStoreController);
 
-application.get('/submissions/delete', (req, res) => {
-    console.log(req.query);
+application.get('/submissions/delete/:id', async(req, res) => {
+    let jobPost = await JobPost.findById(req.params.id);
+    jobPost = jobPost._id.toString();
+    console.log(jobPost);
+    JobPost.findByIdAndDelete(jobPost, (error, jobpost) => {
+        console.log(jobpost);
+    })
     res.redirect('/');
 })
 
