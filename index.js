@@ -70,6 +70,11 @@ application.get('/listing', authenticateUser, listingFormController);
 
 application.post('/submissions/store', validateJobPost, listingFormStoreController);
 
+application.get('/submissions/delete', (req, res) => {
+    console.log(req.query);
+    res.redirect('/');
+})
+
 application.use((req, res) => res.render('404notfound'));
 
 application.listen(3000, () => {
