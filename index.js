@@ -12,6 +12,7 @@ import aboutPageController from './controllers/aboutPage.js';
 import listingFormController from './controllers/listingForm.js';
 import listingFormStoreController from './controllers/listFormStore.js';
 import listingDeletionController from './controllers/listingDeletion.js';
+import listingUpdateController from './controllers/listingUpdate.js';
 import registerFormController from './controllers/registerForm.js';
 import registerFormStoreController from './controllers/registerFormStore.js';
 import loginController from './controllers/login.js';

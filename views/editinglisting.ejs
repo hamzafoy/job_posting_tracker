@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('layouts/header'); -%>
+
+<body>
+
+    <%- include('layouts/navbar'); -%>
+    
+    <div class="container vertical-spacer">
+        <div class="form-header">
+            <h2 class="display-3">Edit Job Posting</h2>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <form action="/submissions/store" method="POST">
+                    <div class="control-group">
+
+                        <div class="form-group floating-label-form-group controls">
+                            <label>Job Title</label>
+                            <input type="text" class="form-control" placeholder="Title" id="title" name="title" >
+                        </div>
+
+                        <div class="form-group floating-label-form-group controls">
+                            <label>Company</label>
+                            <input type="text" class="form-control" placeholder="Company" id="company" name="company" >
+                        </div>
+
+                        <div class="form-group floating-label-form-group controls">
+                            <label>Status</label>
+                            <select class="form-control" id="status" name="status">
+                                <option value="pending">Pending</option>
+                                <option value="accepted">Accepted</option>
+                                <option value="rejected">Rejected</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group floating-label-form-group controls">
+                            <label>Cover Letter Submitted?</label>
+                            <select class="form-control" id="coverletter" name="coverletter">
+                                <option value=false>No</option>
+                                <option value=true>Yes</option>
+                            </select>
+                        </div>
+
+                        <br/>
+
+                        <%- (isEmpty ? include('widgets/formEmptyBanner') : "") %>
+
+                        <br/>
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary" id="sendSubmissionButton">Submit Posting</button>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>
