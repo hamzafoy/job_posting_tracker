@@ -2,12 +2,11 @@ import JobPost from '../models/JobPosting.js'; //importing the Database model fo
 
 
 const listingFormStore = async(req, res) => {
-    console.log(req.params);
-    console.log(req.params.id);
     if(req.params.id) {
-        let jobPost = await JobPost.findByIdAndUpdate(req.params.id, {
-            title: req.body.title,
-            company: req.body.company,
+        const oldJobPost = await JobPost.findById(req.params.id);
+        await JobPost.findByIdAndUpdate(req.params.id, {
+            title: (req.body.title) ? req.body.title : oldJobPost.title,
+            company: (req.body.company) ? req.body.company : oldJobPost.company,
             status: req.body.status,
             coverletter: req.body.coverletter
         });
