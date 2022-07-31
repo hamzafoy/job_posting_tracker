@@ -74,6 +74,8 @@ application.get('/listing/edit/:id', listingUpdateController);
 
 application.post('/submissions/store', validateJobPost, listingFormStoreController);
 
+application.post('/submissions/store/:id', listingFormStoreController);
+
 application.get('/submissions/delete/:id', listingDeletionController);
 
 application.use((req, res) => res.render('404notfound'));
