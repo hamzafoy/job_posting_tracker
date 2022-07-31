@@ -25,7 +25,6 @@ import authenticateUser from './middleware/authMiddleware.js';
 import redirectIfAuthenticated from './middleware/redirectIfAuthMiddleware.js';
 import validateJobPost from './middleware/validationMiddleware.js';
 import expressSession from 'express-session';
-import JobPost from './models/JobPosting.js';
 
 
 // :::: Starting new Express application
@@ -70,6 +69,8 @@ application.get('/auth/register', redirectIfAuthenticated, registerFormControlle
 application.post('/users/register', redirectIfAuthenticated, registerFormStoreController);
 
 application.get('/listing', authenticateUser, listingFormController);
+
+application.get('/listing/edit/:id', listingUpdateController);
 
 application.post('/submissions/store', validateJobPost, listingFormStoreController);
 
