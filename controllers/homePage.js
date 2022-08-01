@@ -26,8 +26,8 @@ const homePage = async(req, res) => {
                     coverletter: true
                 },
                 {
-                    title: "Junior Data Scientist",
-                    company: "Humana",
+                    title: "Plotly.js used to display data",
+                    company: "Regarding pend/reject status & cover letters",
                     status: "rejected",
                     coverletter: false
                 },
