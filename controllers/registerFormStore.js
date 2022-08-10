@@ -1,5 +1,9 @@
-import User from "../models/User.js"; //importing the Database model for use in POST requests
+//importing the Database model for use in POST requests
+import User from "../models/User.js";
 
+
+//This route creates a new user upon successful register parameters provided
+//and checks for errors and maps over the messages in a variable.
 const registerFormStore = async(req, res) => {
     await User.create(req.body, (error, user) => {
         if(error) {
@@ -13,4 +17,6 @@ const registerFormStore = async(req, res) => {
     });
 };
 
+
+//export registerFormStore route for usage in root index.js file.
 export default registerFormStore;

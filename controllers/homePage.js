@@ -1,5 +1,10 @@
-import JobPost from '../models/JobPosting.js'; //importing the Database Model for use in POST requests
+//importing the Database Model for use in POST requests
+import JobPost from '../models/JobPosting.js';
 
+
+//This route will draw data associated with the userID and use it to render a table
+//on the home page & provides said data to the Plotly.js charts. If no userId is saved
+//to the session - meaning no user is logged in - then dummy data is provided.
 const homePage = async(req, res) => {
     if(req.session.userId) {
         const jobposts = await JobPost.find({userid: req.session.userId}).populate('userid');
@@ -45,7 +50,8 @@ const homePage = async(req, res) => {
             noCoverLetterAdded: 2
         })
     }
-    
 };
 
+
+//export homePage route for usage in root index.js file.
 export default homePage;
