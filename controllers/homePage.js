@@ -6,8 +6,12 @@ import JobPost from '../models/JobPosting.js';
 //on the home page & provides said data to the Plotly.js charts. If no userId is saved
 //to the session - meaning no user is logged in - then dummy data is provided.
 const homePage = async(req, res) => {
+    //Checking to see if an user is logged in.
     if(req.session.userId) {
+        //If user is logged in, check for the jobPosts associated with their account.
         const jobposts = await JobPost.find({userid: req.session.userId}).populate('userid');
+        //Collecting data about application status & cover letters to create percentages
+        //used by Plotly.js to render the pie charts
         const jobPostCount = jobposts.length;
         let pendingPosts = await JobPost.find({ userid: req.session.userId, status: 'pending' }).populate('userid');
         pendingPosts = pendingPosts.length;

@@ -6,4 +6,5 @@ const redirectIfAuthenticated = (req, res, next) => {
 }
 
 
+//exporting middleware
 export default redirectIfAuthenticated;

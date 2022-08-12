@@ -21,4 +21,5 @@ const JobPostingSchema = new Schema({
 const JobPost = mongoose.model('JobPost', JobPostingSchema);
 
 
+// :::: Exporting JobPost Data Model
 export default JobPost;
