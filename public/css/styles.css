@@ -15,6 +15,10 @@
   margin: 10vh 0 0;
 }
 
+.narrow-paragraph {
+  margin: 0 12.5vw;
+}
+
 .form-header {
   display: flex;
   flex-direction: column;
