@@ -3,6 +3,10 @@ import express from 'express'; //importing Express.js
 import ejs from 'ejs'; //importing ejs templating engine
 import bodyParser from 'body-parser'; //importing dependency that parses POST data
 import mongoose from 'mongoose'; //importing Mongoose ORM to connect to MongoDB database
+import path from 'path'; //importing path module
+import * as url from 'url'; //importing url module
+const __dirname = url.fileURLToPath(new URL('.', import.meta.url)); 
+import favicon from 'serve-favicon' //importing favicon serving middleware
 
 
 
@@ -29,6 +33,7 @@ import expressSession from 'express-session';
 
 // :::: Starting new Express application
 const application = express();
+application.use(favicon(path.join(__dirname, 'public/img', 'favicon.ico'))); //Drawing favicon from /public/img directory
 application.use(express.static('public')); //instructs Express to serve assets from a 'public' directory
 application.set('view engine', 'ejs'); //instructs Express to render .ejs files with EJS package
 application.use(bodyParser.json());
