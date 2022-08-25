@@ -30,6 +30,7 @@ import authenticateUser from './middleware/authMiddleware.js';
 import redirectIfAuthenticated from './middleware/redirectIfAuthMiddleware.js';
 import validateJobPost from './middleware/validationMiddleware.js';
 import expressSession from 'express-session';
+import MongoStore from 'connect-mongo';
 
 
 // :::: Starting new Express application
@@ -42,7 +43,8 @@ application.use(bodyParser.urlencoded({extended: true}));
 application.use(expressSession({
     secret: 'hamza is my preferred name',
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
+    store: MongoStore.create(options)
 }));
 
 
