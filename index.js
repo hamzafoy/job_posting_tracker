@@ -59,7 +59,7 @@ mongoose.connect(databaseKey, {useNewURLParser: true});
 //         process.exit(1);
 //     }
 // }
-connectingDatabase();
+//connectingDatabase();
 
 
 // :::: Local Application Variables
