@@ -49,17 +49,17 @@ application.use(cookieSession({
 
 
 // :::: Connecting to MongoDB NoSQL database from Node
-mongoose.connect(databaseKey, {useNewURLParser: true});
-// const connectingDatabase = async() => {
-//     try {
-//         await mongoose.connect(databaseKey, {useNewURLParser: true});
-//         console.log(`This bad boy is plugged into MongoDB!`)
-//     } catch (err) {
-//         console.log(err.message);
-//         process.exit(1);
-//     }
-// }
-//connectingDatabase();
+
+const connectingDatabase = async() => {
+    try {
+        await mongoose.connect(databaseKey, {useNewURLParser: true});
+        console.log(`This bad boy is plugged into MongoDB!`)
+    } catch (err) {
+        console.log(err.message);
+        process.exit(1);
+    }
+}
+connectingDatabase();
 
 
 // :::: Local Application Variables
