@@ -31,6 +31,7 @@ import redirectIfAuthenticated from './middleware/redirectIfAuthMiddleware.js';
 import validateJobPost from './middleware/validationMiddleware.js';
 import expressSession from 'express-session';
 import MongoStore from 'connect-mongo';
+import cookieSession from 'cookie-session';
 
 
 // :::: Starting new Express application
@@ -40,11 +41,10 @@ application.use(express.static('public')); //instructs Express to serve assets f
 application.set('view engine', 'ejs'); //instructs Express to render .ejs files with EJS package
 application.use(bodyParser.json());
 application.use(bodyParser.urlencoded({extended: true}));
-application.use(expressSession({
+application.use(cookieSession({
     secret: 'hamza is my preferred name',
     resave: false,
-    saveUninitialized: false,
-    store: MongoStore.create({mongoUrl: databaseKey})
+    saveUninitialized: false
 }));
 
 
