@@ -1,8 +1,9 @@
 //Destroys the current session and all data tied to said session
 const logout = (req, res) => {
-    req.session.destroy(() => {
-        res.redirect('/');
-    })
+    req.session = null
+    // .destroy(() => {
+    //     res.redirect('/');
+    // })
 }
 
 
