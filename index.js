@@ -7,7 +7,8 @@ import path from 'path'; //importing path module
 import * as url from 'url'; //importing url module
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url)); 
 import favicon from 'serve-favicon' //importing favicon serving middleware
-
+import dotenv from 'dotenv/config' //importing dotenv package for using environmental variables
+const databaseKey = process.env.MONGODB_URI; //importing hidden URI key for MongoDB Atlas
 
 
 // :::: Importing controllers which control the routing of HTTP requests
@@ -46,7 +47,7 @@ application.use(expressSession({
 
 
 // :::: Connecting to MongoDB NoSQL database from Node
-mongoose.connect('mongodb://localhost/hamza_job_hunt', {useNewURLParser: true});
+mongoose.connect(databaseKey, {useNewURLParser: true});
 
 
 // :::: Local Application Variables
@@ -85,6 +86,12 @@ application.get('/submissions/delete/:id', listingDeletionController);
 
 application.use((req, res) => res.render('404notfound'));
 
-application.listen(3000, () => {
+
+let port = process.env.PORT;
+if(port == null || port == "" ) {
+    port = 4000
+}
+
+application.listen(port, () => {
     console.log("We are tuned in to Localhost 3000");
 })
