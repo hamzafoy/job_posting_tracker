@@ -44,7 +44,7 @@ application.use(expressSession({
     secret: 'hamza is my preferred name',
     resave: false,
     saveUninitialized: false,
-    store: MongoStore.create(options)
+    store: MongoStore.create({mongoUrl: databaseKey})
 }));
 
 
