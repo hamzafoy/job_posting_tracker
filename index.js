@@ -9,6 +9,7 @@ const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 import favicon from 'serve-favicon' //importing favicon serving middleware
 import dotenv from 'dotenv/config' //importing dotenv package for using environmental variables
 const databaseKey = process.env.MONGODB_URI; //importing hidden URI key for MongoDB Atlas
+import config from 'config';
 
 
 // :::: Importing controllers which control the routing of HTTP requests
@@ -34,6 +35,20 @@ import MongoStore from 'connect-mongo';
 import cookieSession from 'cookie-session';
 
 
+// :::: Connecting to MongoDB NoSQL database from Node
+
+const connectingDatabase = async() => {
+    try {
+        await mongoose.connect(databaseKey, {useNewURLParser: true, useUnifiedTopology: true});
+        console.log(`This bad boy is plugged into MongoDB!`)
+    } catch (err) {
+        console.log(err.message);
+        process.exit(1);
+    }
+}
+connectingDatabase();
+
+
 // :::: Starting new Express application
 const application = express();
 application.use(favicon(path.join(__dirname, 'public/img', 'favicon.ico'))); //Drawing favicon from /public/img directory
@@ -46,20 +61,6 @@ application.use(cookieSession({
     resave: false,
     saveUninitialized: false
 }));
-
-
-// :::: Connecting to MongoDB NoSQL database from Node
-
-const connectingDatabase = async() => {
-    try {
-        await mongoose.connect(databaseKey, {useNewURLParser: true});
-        console.log(`This bad boy is plugged into MongoDB!`)
-    } catch (err) {
-        console.log(err.message);
-        process.exit(1);
-    }
-}
-connectingDatabase();
 
 
 // :::: Local Application Variables

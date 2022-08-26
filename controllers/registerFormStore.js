@@ -5,6 +5,7 @@ import User from "../models/User.js";
 //This route creates a new user upon successful register parameters provided
 //and checks for errors and maps over the messages in a variable.
 const registerFormStore = async(req, res) => {
+    console.log(req.body);
     await User.create(req.body, (error, user) => {
         if(error) {
             const errorMessage = Object.keys(error.errors).map(key => error.errors[key].message);
