@@ -8,8 +8,8 @@ import * as url from 'url'; //importing url module
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url)); 
 import favicon from 'serve-favicon' //importing favicon serving middleware
 import dotenv from 'dotenv/config' //importing dotenv package for using environmental variables
-const databaseKey = process.env.MONGODB_URI; //importing hidden URI key for MongoDB Atlas
 import config from 'config';
+const databaseKey = process.env.MONGODB_URI || config.get('mongoURI');; //importing hidden URI key for MongoDB Atlas
 
 
 // :::: Importing controllers which control the routing of HTTP requests
