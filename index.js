@@ -8,7 +8,7 @@ import * as url from 'url'; //importing url module
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url)); 
 import favicon from 'serve-favicon' //importing favicon serving middleware
 import dotenv from 'dotenv/config' //importing dotenv package for using environmental variables
-import config from 'config';
+import config from 'config'; //importing config package for using environmental variables
 const databaseKey = process.env.MONGODB_URI || config.get('mongoURI');; //importing hidden URI key for MongoDB Atlas
 
 
@@ -36,9 +36,8 @@ import cookieSession from 'cookie-session';
 
 
 // :::: Connecting to MongoDB NoSQL database from Node
-
 const connectingDatabase = async() => {
-    try {
+    try { //using try/catch block to handle Promise accept/reject
         await mongoose.connect(databaseKey, {useNewURLParser: true, useUnifiedTopology: true});
         console.log(`This bad boy is plugged into MongoDB!`)
     } catch (err) {
@@ -56,7 +55,7 @@ application.use(express.static('public')); //instructs Express to serve assets f
 application.set('view engine', 'ejs'); //instructs Express to render .ejs files with EJS package
 application.use(bodyParser.json());
 application.use(bodyParser.urlencoded({extended: true}));
-application.use(cookieSession({
+application.use(cookieSession({ //cookieSession allowing sessions to be saved to clients
     secret: 'hamza is my preferred name',
     resave: false,
     saveUninitialized: false
@@ -100,7 +99,7 @@ application.get('/submissions/delete/:id', listingDeletionController);
 application.use((req, res) => res.render('404notfound'));
 
 
-let port = process.env.PORT;
+let port = process.env.PORT; //Allows for proper ports whether on Heroku deployed app or localhost
 if(port == null || port == "" ) {
     port = 4000
 }
